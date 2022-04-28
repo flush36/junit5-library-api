@@ -5,18 +5,18 @@
 *POST*
 * /api/books<br>
  		 Content: {<br>
-		 	"title": "string",<br>
-			"author": "string",<br>
-			"isbn": "string"<br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "string",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"author": "string",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isbn": "string"<br>
 		 }<br>
 		 Reseponse: CREATED(201)
 
 *PUT*
 * /api/books/id<br>
  		 Content: {<br>
-		 	"title": "string",<br>
-			"author": "string",<br>
-			"isbn": "string"<br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "string",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"author": "string",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isbn": "string"<br>
 		 }<br>
 		 Reseponse: CREATED(200)
 
@@ -31,6 +31,13 @@
 *GET*
 * /api/books?title=*param*&author=*param*&isbn=*param*
 		RESPONSE: No Content(200)
+
+*BAD REQUEST (400) POST, PUT, DELETE*<br>
+ Content: {<br>
+ 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"errors": [<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"erro"<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+	  }
 
 Comments:
 > API created to practice using the JUNIT5 framework
