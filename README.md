@@ -5,19 +5,19 @@
 *POST*
 * /api/books
  		 Content: {<br>
-		 	"title": "string",
-			"author": "string",
+		 	"title": "string",<br>
+			"author": "string",<br>
 			"isbn": "string"<br>
-		 }
+		 }<br>
 		 Reseponse: CREATED(201)
 
 *PUT*
 * /api/books/id
- 		 Content: {
-		 	"title": "string",
-			"author": "string",
-			"isbn": "string"
-		 }
+ 		 Content: {<br>
+		 	"title": "string",<br>
+			"author": "string",<br>
+			"isbn": "string"<br>
+		 }<br>
 		 Reseponse: CREATED(200)
 
 *DELETE*
