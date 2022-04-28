@@ -4,10 +4,10 @@
 
 *POST*
 * /api/books
- 		 Content: {
+ 		 Content: {<br>
 		 	"title": "string",
 			"author": "string",
-			"isbn": "string"
+			"isbn": "string"<br>
 		 }
 		 Reseponse: CREATED(201)
 
