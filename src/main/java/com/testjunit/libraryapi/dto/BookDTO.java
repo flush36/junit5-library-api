@@ -1,11 +1,11 @@
 package com.testjunit.libraryapi.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @Builder
@@ -14,8 +14,14 @@ import lombok.Setter;
 public class BookDTO {
 
 	private Long id;
+	
+	@NotEmpty
 	private String title;
+	
+	@NotEmpty
 	private String author;
+	
+	@NotEmpty
 	private String isbn;
 	
 }

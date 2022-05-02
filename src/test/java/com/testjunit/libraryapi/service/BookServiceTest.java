@@ -31,7 +31,7 @@ public class BookServiceTest {
 	
 	@Test
 	@DisplayName("Deve salvar um livro")
-	public void savbeBookTest() {
+	public void saveBookTest() {
 		//cenario
 		Book book = Book.builder().isbn("123").author("Fulano").title("As aventuras").build();
 		Mockito.when(repository.save(book))
