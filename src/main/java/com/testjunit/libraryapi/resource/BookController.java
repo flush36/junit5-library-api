@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.testjunit.libraryapi.dto.BookDTO;
 import com.testjunit.libraryapi.exception.ApiErros;
+import com.testjunit.libraryapi.exception.BusinessException;
 import com.testjunit.libraryapi.model.entity.Book;
 import com.testjunit.libraryapi.service.BookService;
 
@@ -42,5 +43,11 @@ public class BookController {
 	public ApiErros handleValidationExceptions(MethodArgumentNotValidException ex) {
 		BindingResult bindingResult = ex.getBindingResult();
 		return new ApiErros(bindingResult);
+	}
+	
+	@ExceptionHandler(value = BusinessException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ApiErros handleBusinessException(BusinessException ex) {
+		return new ApiErros(ex);
 	}
 }

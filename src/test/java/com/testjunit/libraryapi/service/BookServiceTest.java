@@ -2,6 +2,7 @@ package com.testjunit.libraryapi.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.testjunit.libraryapi.exception.BusinessException;
 import com.testjunit.libraryapi.model.entity.Book;
 import com.testjunit.libraryapi.model.repository.BookRepository;
 import com.testjunit.libraryapi.service.impl.BookServiceImpl;
@@ -33,7 +35,9 @@ public class BookServiceTest {
 	@DisplayName("Deve salvar um livro")
 	public void saveBookTest() {
 		//cenario
-		Book book = Book.builder().isbn("123").author("Fulano").title("As aventuras").build();
+		Book book = createValidBook();
+		Mockito.when(repository.existsByIsbn(Mockito.anyString())).thenReturn(false);
+		
 		Mockito.when(repository.save(book))
 		.thenReturn(
 				Book.builder()
@@ -50,6 +54,29 @@ public class BookServiceTest {
 		assertThat(savedBook.getIsbn()).isEqualTo("123");
 		assertThat(savedBook.getTitle()).isEqualTo("As aventuras");
 		assertThat(savedBook.getAuthor()).isEqualTo("Fulano");
+	}
+
+	private Book createValidBook() {
+		return Book.builder().isbn("123").author("Fulano").title("As aventuras").build();
+	}
+	
+	@Test
+	@DisplayName("Deve lançar erro de negocio ao tentar salvar um livro com isbn duplicado")
+	public void shouldNotSaveABookWithDuplicatedISBN() {
 		
+		//cenario
+		Book book = createValidBook();
+		Mockito.when(repository.existsByIsbn(Mockito.anyString())).thenReturn(true);
+		
+		//execucao
+		Throwable exeption = Assertions.catchThrowable(() -> service.save(book));
+		
+		//verificacoes
+		assertThat(exeption)
+		.isInstanceOf(BusinessException.class)
+		.hasMessage("Isbn já cadastrado.");
+		
+		Mockito.verify(repository, Mockito.never()).save(book);
+			
 	}
 }
